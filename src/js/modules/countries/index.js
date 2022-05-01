@@ -1,8 +1,9 @@
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
-import fetchCountries from '../helpers/fetchCountries';
-import { DEBOUNCE_DELAY } from '../config';
+import fetchCountries from '../../helpers/fetchCountries';
+import { renderCountryListItem, renderSingleCountryInfo } from './countriesUI';
+import { DEBOUNCE_DELAY } from '../../config';
 
 const refs = {
   searchbox: document.querySelector('#search-box'),
@@ -30,42 +31,14 @@ function showCountries(countriesData) {
     refs.countryList.innerHTML = countriesData.reduce((html, country) => {
       return `
         ${html}
-        <li class='conteiner-item'>
-          <img
-            src='${country.flags.svg}'
-            class='country__flag-img'
-            alt='countries flag'
-            width='30'
-            height='20'
-          />
-          <p class='country__name'>${country.name.official}</p>
-        </li>
+        ${renderCountryListItem(country)}
       `;
     }, '');
     clearCountryInfo();
     return;
   }
 
-  refs.countryInfo.innerHTML = countriesData.reduce((html, country) => {
-    return `
-      <div class='country-info__title'>
-        <img
-          src='${country.flags.svg}'
-          class='country-info__flag-img'
-          alt='countries flag'
-          width='40'
-          height='30'
-        />
-        <h1 class='country-info__name'>${country.name.official}</h1>
-      </div>
-      <div class='content'>
-      <ul class='content__stats'>
-          <li class='content__item'>Capital: <span>${country.capital}</span></li>
-          <li class='content__item'>Population: <span>${country.population}</span></li>
-          <li class='content__item'>Languages: <span>${Object.values(country.languages).join(', ')}</span></li>
-      </ul>
-    `;
-  }, '');
+  refs.countryInfo.innerHTML = renderSingleCountryInfo(countriesData[0]);
   clearCountriesList();
 }
 
