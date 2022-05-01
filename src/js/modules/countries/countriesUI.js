@@ -29,9 +29,10 @@ export const renderSingleCountryInfo = ({
     <h1 class='country-info__name'>${officialName}</h1>
   </div>
   <div class='content'>
-  <ul class='content__stats'>
-      <li class='content__item'>Capital: <span>${capital}</span></li>
-      <li class='content__item'>Population: <span>${population}</span></li>
-      <li class='content__item'>Languages: <span>${Object.values(languages).join(', ')}</span></li>
-  </ul>
+    <ul class='content__stats'>
+        <li class='content__item'>Capital: <span>${capital}</span></li>
+        <li class='content__item'>Population: <span>${population}</span></li>
+        <li class='content__item'>Languages: <span>${Object.values(languages).join(', ')}</span></li>
+    </ul>
+  </div>
 `);
