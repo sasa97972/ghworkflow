@@ -4,8 +4,6 @@ import Notiflix from 'notiflix';
 import fetchCountries from '../helpers/fetchCountries';
 import { DEBOUNCE_DELAY } from '../config';
 
-import './css/styles.css';
-
 const refs = {
   searchbox: document.querySelector('#search-box'),
   countryList: document.querySelector('.country-list'),
